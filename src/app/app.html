@@ -1,0 +1,46 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <h1 class="text-5xl font-bold">{{ hero.headline }}</h1>
+      <p class="py-6">{{ hero.subheadline }}</p>
+      <div class="flex justify-center gap-4 mt-4">
+        <button *ngFor="let cta of hero.ctas"
+                class="btn"
+                [ngClass]="cta.type === 'primary' ? 'btn-primary' : 'btn-outline'"
+                (click)="cta.action === 'email' ? scrollToEmail() : goToSurvey()">
+          {{ cta.text }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="py-16 bg-base-100 text-center">
+  <h2 class="text-3xl font-bold mb-8">Why Feathrs?</h2>
+  <div class="grid gap-8 md:grid-cols-3 px-6">
+    <div *ngFor="let feature of features" class="card shadow-xl p-6 bg-base-200">
+      <h3 class="text-xl font-bold mb-2">{{ feature.title }}</h3>
+      <p>{{ feature.description }}</p>
+    </div>
+  </div>
+</div>
+
+<div id="email-capture" class="py-16 bg-base-200 text-center">
+  <h2 class="text-2xl font-bold mb-4">Join the Waitlist</h2>
+  <p class="mb-6">Be the first to try Feathrs when we launch + get insider updates 🚀</p>
+  <div class="join">
+    <input type="email" [(ngModel)]="email" placeholder="Enter your email" class="input input-bordered join-item w-64" />
+    <button (click)="submitEmail()" class="btn btn-primary join-item">Join</button>
+  </div>
+</div>
+
+<div class="py-16 bg-base-100 text-center">
+  <h2 class="text-2xl font-bold mb-4">{{ surveyData.text }}</h2>
+  <a [href]="surveyData.link" target="_blank" class="btn btn-outline btn-secondary">
+    Take Survey
+  </a>
+</div>
+
+<footer class="footer footer-center p-4 bg-base-300 text-base-content">
+  <p>© {{ year }} Feathrs.com - Lightweight HR Solutions</p>
+</footer>
